@@ -11,6 +11,7 @@
         android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:layout_marginTop="5dp"
         android:paddingRight="10dp"
         android:scaleType="fitXY" />
 
@@ -27,8 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Item Name"
-            android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textColor="@color/Black" />
+            android:textColor="@color/Black"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/textViewSubName"
@@ -38,6 +39,6 @@
             android:maxLength="100"
             android:text="Item Name"
             android:textColor="@color/Gray"
-            android:textSize="14dp" />
+            android:textSize="12dp" />
     </LinearLayout>
 </RelativeLayout>
