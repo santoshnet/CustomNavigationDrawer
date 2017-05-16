@@ -13,10 +13,14 @@
         <item>Gallery</item>
         <item>AboutUs</item>
         <item>Help</item>
+        <item>BottomSheet</item>
 
 
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_3">Item3</string>
+    <string name="item_2">Item2</string>
+    <string name="item_1">Item1</string>
 </resources>

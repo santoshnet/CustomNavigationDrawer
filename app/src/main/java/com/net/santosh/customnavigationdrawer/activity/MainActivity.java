@@ -3,8 +3,11 @@ package com.net.santosh.customnavigationdrawer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -44,13 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
         setupToolbar();
 
-        NavDrawerModel[] drawerItem = new NavDrawerModel[5];
+        NavDrawerModel[] drawerItem = new NavDrawerModel[6];
 
         drawerItem[0] = new NavDrawerModel(R.drawable.home, "Home", "Default Page");
         drawerItem[1] = new NavDrawerModel(R.drawable.photo, "Photo", "Photo Section");
         drawerItem[2] = new NavDrawerModel(R.drawable.gallery, "Gallery", "All Images Section");
         drawerItem[3] = new NavDrawerModel(R.drawable.about_us, "AboutUs", "About Company");
         drawerItem[4] = new NavDrawerModel(R.drawable.help, "Help", "User Guide");
+        drawerItem[5] = new NavDrawerModel(R.drawable.bottomsheet, "Bottom Sheet", "Show Bottom Sheet");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -65,6 +69,39 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             selectItem(0);
         }
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                findViewById(R.id.navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener
+                (new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment selectedFragment = null;
+                        switch (item.getItemId()) {
+                            case R.id.action_item1:
+                                selectedFragment = new HomeFragment();
+                                break;
+                            case R.id.action_item2:
+                                selectedFragment = new PhotoFragment();
+                                break;
+                            case R.id.action_item3:
+                                selectedFragment = new GalleryFragment();
+                                break;
+                        }
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.content_frame, selectedFragment);
+                        transaction.commit();
+                        return true;
+                    }
+                });
+
+        //Manually displaying the first fragment - one time only
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, new HomeFragment());
+        transaction.commit();
+
 
 
     }
@@ -91,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 4:
                 startActivity(new Intent(getApplicationContext(), HelpActivity.class));
+                break;
+            case 5:
+                startActivity(new Intent(getApplicationContext(), BottomSheetActivity.class));
                 break;
             default:
                 break;

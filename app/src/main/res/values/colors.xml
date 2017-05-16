@@ -159,5 +159,8 @@
     <color name="colorFive">#7ad79c</color>
     <color name="colorSix">#ff3a3d</color>
 
+    <color name="white">#FFFFFF</color>
+    <color name="white_trans">#99FFFFFF</color>
+
 
 </resources>
