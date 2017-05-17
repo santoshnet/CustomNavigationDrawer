@@ -87,21 +87,26 @@ public class BottomSheetActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 if (position == 2) {
+
                     //delete an item in listview
-                    new AlertDialog.Builder(BottomSheetActivity.this)
-                            .setTitle("Delete Confirm")
-                            .setMessage("Are you sure you want to delete " + "\"" + selectedBook.getName().toUpperCase() + "\"" + "?")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //delete it
-                                    books.remove(selectedBook);
-                                    adapter.notifyDataSetChanged();
-                                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                                }
-                            })
-                            .setNegativeButton(android.R.string.no, null)
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
+                    if (selectedBook == null) {
+                        Toast.makeText(getApplicationContext(), "select an item", Toast.LENGTH_LONG).show();
+                    } else {
+                        new AlertDialog.Builder(BottomSheetActivity.this)
+                                .setTitle("Delete Confirm")
+                                .setMessage("Are you sure you want to delete " + "\"" + selectedBook.getName().toUpperCase() + "\"" + "?")
+                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //delete it
+                                        books.remove(selectedBook);
+                                        adapter.notifyDataSetChanged();
+                                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.no, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                    }
                 } else if (position == 0) {
 
                     //add new book to main ListView
